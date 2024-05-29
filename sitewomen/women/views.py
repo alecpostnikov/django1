@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 
 
 def index(request):
@@ -16,3 +16,7 @@ def chocolate(request):
 
 def archive(request, year):
     return HttpResponse(f"{year} был тяжёлым")
+
+
+def page_not_found(request, exception):
+    return HttpResponseNotFound("<h1>Не тот запрос, чепушила</h1>")
