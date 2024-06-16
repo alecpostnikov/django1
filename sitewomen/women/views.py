@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound, Http404
+import time
 
 
 def index(request):
@@ -16,9 +17,14 @@ def chocolate(request):
 
 def archive(request, year):
     if int(year) > 2024:
-        raise Http404()
+        return redirect('/')
     return HttpResponse(f"{year} был тяжёлым")
 
 
 def page_not_found(request, exception):
     return HttpResponseNotFound("<h1>Не тот запрос, чепушила</h1>")
+
+
+def cycle1(request):
+    time.sleep(2)
+    return redirect(cycle1)

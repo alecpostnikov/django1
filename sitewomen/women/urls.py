@@ -10,4 +10,5 @@ urlpatterns = [
     re_path(r'.+choco.', views.chocolate),
     re_path(r"^archive/(?P<year>[0-9]{4})/", views.archive),
     path("converter/<four_digit:year>/", views.archive),
+    path("cycle/", views.cycle1),
 ]
