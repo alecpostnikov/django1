@@ -1,10 +1,21 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 import time
+from django.template.loader import render_to_string
+
+cupcake_data = [{'type': 'vanilla', 'description': 'an all time classic only for boomers',
+                 'ingredients': 'cupcake stuff, vanilla, our love(E111, E112, E113, E114, E115..., cancirogens )', 'in_stock': True},
+                {'type': 'protein chocolate', 'description': '0 sugar',
+                 'ingredients': "sugar(98%), flour, eggs, cocoa powder", 'in_stock': True},]
 
 
 def index(request):
     return HttpResponse("Страница приложения women.")
+
+
+def cupcake_list(request):
+    data = {'menu': cupcake_data}
+    return render(request, 'women/cupcake.html', context=data)
 
 
 def cupcake(request, cupcake_id, cupcake_amount):
@@ -13,6 +24,13 @@ def cupcake(request, cupcake_id, cupcake_amount):
 
 def chocolate(request):
     return HttpResponse("Шоколад это вкусно")
+
+
+def danger(request):
+    # t = render_to_string("women/danger.html")
+    # return HttpResponse(t)
+    data = {'given_thing': 'медаль'}
+    return render(request, 'women/danger.html', data)
 
 
 def archive(request, year):
